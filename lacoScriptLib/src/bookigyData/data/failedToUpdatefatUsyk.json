@@ -1,0 +1,68 @@
+{
+  "failedCalls": [
+    {
+      "dtoIn": {
+        "order": { "id": "5f845376c43dc30027d5f223", "createdBy": "4-3164-1", "ownedBy": "4-3164-1" },
+        "orderTimeslots": [{ "product": "5f6b2169096b0d0027cf3cd3", "datetimeFrom": "2020-10-13T06:00:00.000Z", "datetimeTo": "2020-10-13T10:00:00.000Z" }]
+      },
+      "error": {
+        "message": "Request failed with status code 400",
+        "uuAppErrorMap": {
+          "uu-bookigy-workplaceg01/statistics/afterBookingUpdate/workplaceBookingSyncDoesNotExist": {
+            "id": "549ca40eaf853a43d8fc515728249624",
+            "timestamp": "2022-07-27T13:11:46.341Z",
+            "type": "error",
+            "message": "WorkplaceBookingSync does not exist.",
+            "paramMap": { "bookingEngineOrder": "5f845376c43dc30027d5f223" }
+          }
+        }
+      }
+    },
+    {
+      "dtoIn": {
+        "order": { "id": "5f8836064312670027032117", "createdBy": "4-3164-1", "ownedBy": "4-3164-1" },
+        "orderTimeslots": [{ "product": "5f85bed8c43dc30027d5ffc9", "datetimeFrom": "2020-10-16T12:00:00.000Z", "datetimeTo": "2020-10-16T16:00:00.000Z" }]
+      },
+      "error": {
+        "message": "Request failed with status code 400",
+        "uuAppErrorMap": {
+          "uu-bookigy-workplaceg01/statistics/afterBookingUpdate/workplaceBookingSyncDoesNotExist": {
+            "id": "106c8c66fd415817360fe8f1008dacb7",
+            "timestamp": "2022-07-27T13:11:57.507Z",
+            "type": "error",
+            "message": "WorkplaceBookingSync does not exist.",
+            "paramMap": { "bookingEngineOrder": "5f8836064312670027032117" }
+          }
+        }
+      }
+    },
+    {
+      "dtoIn": {
+        "order": { "id": "5f88361c4312670027032123", "createdBy": "4-3164-1", "ownedBy": "4-3164-1" },
+        "orderTimeslots": [{ "product": "5f85c3acc43dc30027d6011a", "datetimeFrom": "2020-10-15T11:45:00.000Z", "datetimeTo": "2020-10-15T15:45:00.000Z" }]
+      },
+      "error": {
+        "message": "Request failed with status code 400",
+        "uuAppErrorMap": {
+          "uu-bookigy-workplaceg01/statistics/afterBookingUpdate/workplaceBookingSyncDoesNotExist": {
+            "id": "73450701868b00e7a2840751c4130efc",
+            "timestamp": "2022-07-27T13:11:59.335Z",
+            "type": "error",
+            "message": "WorkplaceBookingSync does not exist.",
+            "paramMap": { "bookingEngineOrder": "5f88361c4312670027032123" }
+          }
+        }
+      }
+    },
+    {
+      "dtoIn": {
+        "order": { "id": "5f92aa13182c55002744456e", "createdBy": "24-7156-1", "ownedBy": "4-3164-1" },
+        "orderTimeslots": [{ "product": "5f85ca3fc43dc30027d601f7", "datetimeFrom": "2020-10-23T10:15:00.000Z", "datetimeTo": "2020-10-23T14:15:00.000Z" }]
+      },
+      "error": {
+        "message": "Request failed with status code 500",
+        "uuAppErrorMap": { "uu-appg01/server/internalServerError": { "type": "error", "message": "Cannot read properties of undefined (reading 'price')" } }
+      }
+    }
+  ]
+}

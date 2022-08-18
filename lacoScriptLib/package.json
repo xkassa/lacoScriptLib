@@ -1,0 +1,31 @@
+{
+  "name": "uuBookigyScriptLib",
+  "version": "0.1.0",
+  "description": "",
+  "license": "License Commercial",
+  "spec": "nodejs-scriptlib; uu_appg01@1.2.0",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.0.1",
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.21",
+    "node-fetch": "^2.2.0",
+    "open": "^7.0.3",
+    "prettier": "^2.7.1",
+    "requirejs": "^2.3.6",
+    "url-parse": "^1.5.10",
+    "qs": "^6.0.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "prettier": {
+    "printWidth": 200
+  }
+}
