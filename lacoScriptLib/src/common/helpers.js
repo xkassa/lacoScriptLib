@@ -1,4 +1,5 @@
 import _ from "lodash";
+import flat from "flat";
 import { get, post } from "./rest-clients.js";
 import productionUser from "../configDir/6399_5018_1.js";
 import devUser from "../configDir/1063_7460_6908_0000.js";
@@ -34,7 +35,7 @@ const getPersonByUuId = (uuIdentity, token) => {
 
 const deepPick = (paths, obj) => _.fromPairs(paths.map((p) => [_.last(p.split(".")), _.get(obj, p)]));
 
-const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000, postMethod = false) => {
+const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000, method = "get") => {
   let pageIndex = 0;
   dtoIn = { ...dtoIn, pageInfo: { pageIndex, pageSize } };
   const itemList = [];
@@ -42,10 +43,18 @@ const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000,
   while (running) {
     dtoIn.pageInfo.pageIndex = pageIndex;
     let newItemList;
-    if (postMethod) {
-      newItemList = await post(baseUri, useCase, dtoIn, token);
-    } else {
-      newItemList = await get(baseUri, useCase, dtoIn, token);
+    switch (method) {
+      case "get":
+        newItemList = await get(baseUri, useCase, dtoIn, token);
+        break;
+      case "post":
+        newItemList = await post(baseUri, useCase, dtoIn, token);
+        break;
+      case "uafGet":
+        newItemList = await uafGet(baseUri, useCase, dtoIn, token);
+        break;
+      default:
+        newItemList = await get(baseUri, useCase, dtoIn, token);
     }
     if (newItemList.itemList.length === 0) {
       running = false;
@@ -73,5 +82,16 @@ class TokenService {
   }
 }
 
-export { get, post, grantToken, getPersonByUuId, deepPick, getFullList, TokenService };
-export default { get, post, grantToken, getPersonByUuId, deepPick, getFullList, TokenService };
+function getUnicornCorrectGetUrl(useCase, dtoIn) {
+  const flatten = flat(dtoIn);
+  let correctUrl = useCase;
+  Object.keys(flatten).forEach((key, index) => {
+    correctUrl += (index ? "&" : "?") + key + "=" + flatten[key];
+  });
+  return correctUrl;
+}
+
+const uafGet = async (baseUri, useCase, dtoIn, token = "") => await get(baseUri, getUnicornCorrectGetUrl(useCase, dtoIn), {}, token);
+
+export { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, TokenService };
+export default { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, TokenService };

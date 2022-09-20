@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const getHeaders = (token) => ({ Authorization: `Bearer ${token}` });
 
 const config = (dtoIn, token) => ({
@@ -20,5 +19,4 @@ function setUseCase(baserUrl, useCase) {
 const get = async (baseUri, useCase, dtoIn, token = "") => (await axios.get(setUseCase(baseUri, useCase), config(dtoIn, token))).data;
 const post = async (baseUri, useCase, dtoIn, token = "") => (await axios.post(setUseCase(baseUri, useCase), dtoIn, { headers: getHeaders(token) })).data;
 
-
-export { get, post  };
+export { get, post };
