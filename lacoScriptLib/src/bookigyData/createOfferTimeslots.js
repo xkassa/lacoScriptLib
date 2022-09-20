@@ -2,13 +2,13 @@ import { get, post, grantToken } from "../common/helpers.js";
 import { bookingEngineUrl, bookigyUrl } from "../common/urls.js";
 import Common from "./common.js";
 
-const ENV = "uatDemo";
+const ENV = "productionAis";
 const DEVELOPMENT = false;
 
 async function main() {
   const token = await grantToken(DEVELOPMENT);
-  const numberOfTimeslotsInAdvance = 40;
-  let timeslotList = Common.createTimeslots("2022-07-29T08:00:00Z", numberOfTimeslotsInAdvance, 4, 21);
+  const numberOfTimeslotsInAdvance = 1;
+  let timeslotList = Common.createTimeslots("2022-09-15T08:00:00Z", numberOfTimeslotsInAdvance, 10, 21);
   let uuBookingEngineOffer, productList;
   try {
     uuBookingEngineOffer = (await get(bookigyUrl[ENV], "main/get", {}, token)).uuBookingEngineOffer;

@@ -11,7 +11,7 @@ const grantToken = async (dev = false) => {
         grant_type: "password",
         accessCode1: devUser.accessCode1,
         accessCode2: devUser.accessCode2,
-        scope: "openid https://uuapp-dev.plus4u.net",
+        scope: "openid https://uuapp-dev.plus4u.net http://localhost",
       });
     } else {
       token = await post("https://uuidentity.plus4u.net/uu-oidc-maing02/bb977a99f4cc4c37a2afce3fd599d0a7", "oidc/grantToken", {
@@ -34,18 +34,19 @@ const getPersonByUuId = (uuIdentity, token) => {
 
 const deepPick = (paths, obj) => _.fromPairs(paths.map((p) => [_.last(p.split(".")), _.get(obj, p)]));
 
-const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000) => {
+const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000, postMethod = false) => {
   let pageIndex = 0;
   dtoIn = { ...dtoIn, pageInfo: { pageIndex, pageSize } };
-  let { itemList, pageInfo } = await get(baseUri, useCase, dtoIn, token);
-  if (!pageInfo) {
-    throw new Error("this is not command with pagination");
-  }
-  pageIndex++;
+  const itemList = [];
   let running = true;
-  while (running /*pageIndex * pageSize <= pageInfo.total*/) {
+  while (running) {
     dtoIn.pageInfo.pageIndex = pageIndex;
-    const newItemList = await get(baseUri, useCase, { ...dtoIn, pageInfo: { pageIndex, pageSize } }, token);
+    let newItemList;
+    if (postMethod) {
+      newItemList = await post(baseUri, useCase, dtoIn, token);
+    } else {
+      newItemList = await get(baseUri, useCase, dtoIn, token);
+    }
     if (newItemList.itemList.length === 0) {
       running = false;
     } else {
@@ -53,7 +54,7 @@ const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000)
       pageIndex++;
     }
   }
-  return { itemList, pageInfo };
+  return { itemList };
 };
 
 class TokenService {

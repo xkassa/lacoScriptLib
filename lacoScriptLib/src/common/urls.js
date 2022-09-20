@@ -1,4 +1,9 @@
 const bookingEngineUrl = {
+  localhost:{
+    host: "http://localhost:8080",
+    contextPath: "uu-bookingengine-maing01",
+    awid: "00000e63666a4a7d9996ab47a5fa2cfd",
+  },
   devswf: {
     host: "https://uuapp-dev.plus4u.net",
     contextPath: "uu-bookingengine-maing01",
@@ -28,6 +33,21 @@ const bookingEngineUrl = {
     host: "https://uuappg01-eu-w-1.plus4u.net",
     contextPath: "uu-bookingengine-maing01",
     awid: "435952cf8c274529800fa14c9e8051a8",
+  },
+  productionMeltemi: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookingengine-maing01",
+    awid: "72a7e1987f6f4414a2a7041f3954a744",
+  },
+  fatMeltemi: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookingengine-maing01",
+    awid: "fbb5deca28474226a0b86db88a8a84df",
+  },
+  productionAis: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookingengine-maing01",
+    awid: "d83885410070f5d1942cb9e32f9e0f6c",
   },
 };
 
@@ -62,6 +82,11 @@ const bookigyUrl = {
     contextPath: "uu-bookigy-workplaceg01",
     awid: "318ed371ee79457f8cf9c2019e8c67a3",
   },
+  productionAis: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookigy-workplaceg01",
+    awid: "61b96e2ccf9b8c25453e0ea846c6a02a",
+  },
 };
 
 const uuBtUrl = {
@@ -75,7 +100,21 @@ const uuBtUrl = {
   },
 };
 
+const chargeParkOperatorUrl = {
+  swfDev: {
+    host: "https://uuapp-dev.plus4u.net",
+    contextPath: "uu-chargeparkparking-operatorg01",
+    awid: "8fe8c3c7af95f6142a4c3ea2e2b69774",
+  },
+  localhost: {
+    host: "http://localhost:8080",
+    contextPath: "uu-chargeparkparking-operatorg01",
+    awid: "00000fcc2a0b4f55ac5b2474d45e489b",
+  },
+};
+
 const oidc = "https://uuapp-dev.plus4u.net/uu-oidc-maing02/eca71064ecce44b0a25ce940eb8f053d";
 
-export { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc };
-export default { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc };
+const myTerritoryUrl = "https://uuapp.plus4u.net/uu-myterritory-dwg01/b71c506c307e4bda987fddd881c68aec";
+export { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc, chargeParkOperatorUrl, myTerritoryUrl };
+export default { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc, chargeParkOperatorUrl, myTerritoryUrl };
