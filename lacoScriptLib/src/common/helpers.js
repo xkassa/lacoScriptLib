@@ -63,7 +63,7 @@ const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000,
       pageIndex++;
     }
   }
-  return { itemList };
+  return { itemList, pageInfo: { pageIndex: 0, pageSize: itemList.length, total: itemList.length } };
 };
 
 class TokenService {
