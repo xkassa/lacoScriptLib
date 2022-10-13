@@ -3,7 +3,7 @@ import flat from "flat";
 import { get, post } from "./rest-clients.js";
 import productionUser from "../configDir/6399_5018_1.js";
 import devUser from "../configDir/1063_7460_6908_0000.js";
-
+import { loremIpsum } from "lorem-ipsum";
 const grantToken = async (dev = false) => {
   let token;
   try {
@@ -35,7 +35,7 @@ const getPersonByUuId = (uuIdentity, token) => {
 
 const deepPick = (paths, obj) => _.fromPairs(paths.map((p) => [_.last(p.split(".")), _.get(obj, p)]));
 
-const getFullList = async (baseUri, useCase, dtoIn, token = "", pageSize = 1000, method = "get") => {
+const getFullList = async (baseUri, useCase, dtoIn = {}, token = "", pageSize = 1000, method = "uafGet") => {
   let pageIndex = 0;
   dtoIn = { ...dtoIn, pageInfo: { pageIndex, pageSize } };
   const itemList = [];
@@ -93,5 +93,7 @@ function getUnicornCorrectGetUrl(useCase, dtoIn) {
 
 const uafGet = async (baseUri, useCase, dtoIn, token = "") => await get(baseUri, getUnicornCorrectGetUrl(useCase, dtoIn), {}, token);
 
-export { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, TokenService };
-export default { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, TokenService };
+const oneWord = () => loremIpsum({ count: 1, sentenceUpperBound: 1, sentenceLowerBound: 1 }).replace(".", "");
+const lorem = loremIpsum;
+export { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, oneWord, TokenService, lorem };
+export default { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, oneWord, TokenService, lorem };

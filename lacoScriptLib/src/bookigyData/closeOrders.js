@@ -8,15 +8,14 @@ async function main() {
   const token = await grantToken(DEVELOPMENT);
   let response;
   try {
-    response = await get(bookingEngineUrl[ENV], "order/list", { datetimeFrom: "2022-07-13T00:00:00Z",createdBy: "11-9524-1" }, token);
+    response = await get(bookingEngineUrl[ENV], "order/list", { datetimeFrom: "2022-07-13T00:00:00Z", createdBy: "11-9524-1" }, token);
   } catch (e) {
     console.error(e);
   }
 
   try {
-    for(let order of response.itemList){
-
-    response = await post(bookingEngineUrl[ENV], "order/cancelByExecutive", { id: order.id }, token);
+    for (let order of response.itemList) {
+      response = await post(bookingEngineUrl[ENV], "order/cancelByExecutive", { id: order.id }, token);
     }
   } catch (e) {
     console.error(e);
