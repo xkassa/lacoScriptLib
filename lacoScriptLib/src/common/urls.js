@@ -1,5 +1,5 @@
 const bookingEngineUrl = {
-  localhost:{
+  localhost: {
     host: "http://localhost:8080",
     contextPath: "uu-bookingengine-maing01",
     awid: "00000e63666a4a7d9996ab47a5fa2cfd",
@@ -49,6 +49,21 @@ const bookingEngineUrl = {
     contextPath: "uu-bookingengine-maing01",
     awid: "d83885410070f5d1942cb9e32f9e0f6c",
   },
+  productionWusternot: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookingengine-maing01",
+    awid: "ec2cf82be57443c0b561f4b5df248946",
+  },
+  productionCSP: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookingengine-maing01",
+    awid: "d83885410070f5d1942cb9e32f9e0f6c",
+  },
+  termsProduction: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookingengine-maing01",
+    awid: "e81bb5121bd24c7394cff6a0907aff2b",
+  },
 };
 
 const bookigyUrl = {
@@ -87,6 +102,16 @@ const bookigyUrl = {
     contextPath: "uu-bookigy-workplaceg01",
     awid: "61b96e2ccf9b8c25453e0ea846c6a02a",
   },
+  productionWusternot: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-bookigy-workplaceg01",
+    awid: "2fd4662aa043439abd147cddaf6319ee",
+  },
+  productionCSP: {
+    host: "https://uuapp.plus4u.net/",
+    contextPath: "uu-bookigy-workplaceg01",
+    awid: "61b96e2ccf9b8c25453e0ea846c6a02a",
+  },
 };
 
 const uuBtUrl = {
@@ -97,6 +122,11 @@ const uuBtUrl = {
     awscId: "60bf36922e800400541ace70",
     allWithSubOrdinatesGroupId: "60bf36972e800400541ace9b",
     allWithSubOrdinatesGroupCode: "unit-ebc-groups-allWithSubordinates",
+  },
+  termsProduction: {
+    host: "https://uuappg01-eu-w-1.plus4u.net",
+    contextPath: "uu-businessterritory-maing01",
+    awid: "407135c5d0eb451482495519f78eff10",
   },
 };
 
@@ -112,9 +142,17 @@ const chargeParkOperatorUrl = {
     awid: "00000fcc2a0b4f55ac5b2474d45e489b",
   },
 };
+const chargeParkAggregatorUrl = {
+  swfDev: {
+    host: "https://uuapp-dev.plus4u.net",
+    contextPath: "uu-chargeparkparking-aggregatorg01",
+    awid: "e48c6be5a21bda832d072b819bf5f9b1",
+  },
+};
 
 const oidc = "https://uuapp-dev.plus4u.net/uu-oidc-maing02/eca71064ecce44b0a25ce940eb8f053d";
-
 const myTerritoryUrl = "https://uuapp.plus4u.net/uu-myterritory-dwg01/b71c506c307e4bda987fddd881c68aec";
-export { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc, chargeParkOperatorUrl, myTerritoryUrl };
-export default { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc, chargeParkOperatorUrl, myTerritoryUrl };
+const uuSpecialistUrl = "https://uuapp.plus4u.net/uu-specialistwtm-maing01/99923616732453117-8031926f783d4aaba733af73c1974840";
+
+export { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc, chargeParkOperatorUrl, chargeParkAggregatorUrl, myTerritoryUrl, uuSpecialistUrl };
+export default { bookingEngineUrl, bookigyUrl, uuBtUrl, oidc, chargeParkOperatorUrl, chargeParkAggregatorUrl, myTerritoryUrl, uuSpecialistUrl };

@@ -45,16 +45,28 @@ const getFullList = async (baseUri, useCase, dtoIn = {}, token = "", pageSize = 
     let newItemList;
     switch (method) {
       case "get":
-        newItemList = await get(baseUri, useCase, dtoIn, token);
+        try {
+          newItemList = await get(baseUri, useCase, dtoIn, token);
+        } catch (e) {
+          console.error(e);
+        }
         break;
       case "post":
         newItemList = await post(baseUri, useCase, dtoIn, token);
         break;
       case "uafGet":
-        newItemList = await uafGet(baseUri, useCase, dtoIn, token);
+        try {
+          newItemList = await uafGet(baseUri, useCase, dtoIn, token);
+        } catch (e) {
+          console.error(e);
+        }
         break;
       default:
-        newItemList = await get(baseUri, useCase, dtoIn, token);
+        try {
+          newItemList = await get(baseUri, useCase, dtoIn, token);
+        } catch (e) {
+          console.error(e);
+        }
     }
     if (newItemList.itemList.length === 0) {
       running = false;
@@ -95,5 +107,13 @@ const uafGet = async (baseUri, useCase, dtoIn, token = "") => await get(baseUri,
 
 const oneWord = () => loremIpsum({ count: 1, sentenceUpperBound: 1, sentenceLowerBound: 1 }).replace(".", "");
 const lorem = loremIpsum;
-export { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, oneWord, TokenService, lorem };
-export default { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, oneWord, TokenService, lorem };
+
+function wait(time = 500) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("done!");
+    }, time);
+  });
+}
+export { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, oneWord, TokenService, lorem, wait };
+export default { get, post, uafGet, grantToken, getPersonByUuId, deepPick, getFullList, oneWord, TokenService, lorem, wait };

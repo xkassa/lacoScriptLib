@@ -36,5 +36,27 @@ function createTimeslots(preInitialDate, numberOfTimeslots = 1, utcHourFrom = 0,
   return timeslotList;
 }
 
-export { createTimeslots, create40Timeslots };
-export default { createTimeslots, create40Timeslots };
+function getAddTimeslotsBodyList(timeslotList, productList, uuBookingEngineOffer) {
+  let bodyList = [
+    {
+      offer: uuBookingEngineOffer,
+      timeslotList: [],
+    },
+  ];
+  for (let product of productList) {
+    for (let timeslot of timeslotList) {
+      if (bodyList.at(-1).timeslotList.length >= 40) {
+        bodyList.push({
+          offer: uuBookingEngineOffer,
+          timeslotList: [],
+        });
+      }
+      bodyList.at(-1).timeslotList.push({ ...timeslot, product });
+    }
+  }
+
+  return bodyList;
+}
+
+export { createTimeslots, create40Timeslots, getAddTimeslotsBodyList };
+export default { createTimeslots, create40Timeslots, getAddTimeslotsBodyList };

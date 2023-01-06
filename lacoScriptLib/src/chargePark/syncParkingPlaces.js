@@ -1,5 +1,5 @@
 import { getFullList, post, TokenService } from "../common/helpers.js";
-import { chargeParkOperatorUrl } from "../common/urls.js";
+import { chargeParkAggregatorUrl, chargeParkOperatorUrl } from "../common/urls.js";
 
 const ENV = "swfDev";
 const DEVELOPMENT = true;
@@ -22,18 +22,25 @@ async function main() {
       let res;
       try {
         res = await post(
-          chargeParkOperatorUrl[ENV],
-          "parkingPlace/update",
+          chargeParkAggregatorUrl[ENV],
+          "parkingPlace/processChange",
           {
-            ...parkingPlace,
-            location: { ...parkingPlace.location, pointCoordinates: { latitude: parkingPlace.location.pointCoordinates.longitude, longitude: parkingPlace.location.pointCoordinates.latitude } },
+            eventBrokerData: {
+              uuAppEvent: {
+                data: {
+                  parkingPlaceId: parkingPlace.id,
+                  operatorAwid: chargeParkOperatorUrl[ENV].awid,
+                },
+              },
+            },
           },
           token
         );
+        console.log(res);
       } catch (e) {
         console.log(e.code);
       }
-      console.log(`updated place ${parkingPlace.basicInformation.name.en}`);
+      console.log(`${index} synced place ${parkingPlace.basicInformation.name.en}`);
     }
     console.log();
   } catch (e) {

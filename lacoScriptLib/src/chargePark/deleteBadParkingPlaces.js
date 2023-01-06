@@ -18,22 +18,15 @@ async function main() {
     for (let index in places) {
       let parkingPlace = places[index];
       if (!parkingPlace) continue;
+      if (typeof parkingPlace.basicInformation.name === "object") continue;
 
       let res;
       try {
-        res = await post(
-          chargeParkOperatorUrl[ENV],
-          "parkingPlace/update",
-          {
-            ...parkingPlace,
-            location: { ...parkingPlace.location, pointCoordinates: { latitude: parkingPlace.location.pointCoordinates.longitude, longitude: parkingPlace.location.pointCoordinates.latitude } },
-          },
-          token
-        );
+        res = await post(chargeParkOperatorUrl[ENV], "parkingPlace/setState", { id: parkingPlace.id, state: "deleted" }, token);
       } catch (e) {
         console.log(e.code);
       }
-      console.log(`updated place ${parkingPlace.basicInformation.name.en}`);
+      console.log(`deleted place ${parkingPlace.basicInformation.name ?? parkingPlace.basicInformation.name.en}`);
     }
     console.log();
   } catch (e) {
